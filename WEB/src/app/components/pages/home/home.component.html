@@ -1,0 +1,27 @@
+<div class="home-container">
+  <h1>Veja oque estão compartilhando</h1>
+  <div class="search-container">
+    <form>
+      <fa-icon [icon]="faSearch"></fa-icon>
+      <input
+      type="text"
+      placeholder="Busque por um momento..."
+      (input)="search($event)">
+    </form>
+  </div>
+  @if(moments.length > 0){
+    <div class="moments-container">
+      @for(moment of moments; track $index){
+        <div class="moment">
+          <img src="{{baseApiUrl}}{{moment.image}}" alt="{{moment.title}}">
+          <h3>{{moment.title}}</h3>
+          <p class="date">Em: {{moment.created_at}}</p>
+          <p><a routerLink="moments/{{ moment.id }}">Detalhes</a></p>
+        </div>
+      }
+    </div>
+  }
+  @else{
+    <h1>Não há momentos cadastrados!</h1>
+  }
+</div>
